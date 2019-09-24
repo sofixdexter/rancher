@@ -5,7 +5,7 @@ metadata:
   namespace: gitlab
 spec:
   rules:
-  - host: "{{ .Release.Name }}.{{ .Values.ingress.ip. }}.nip.io"
+  - host: "{{ .Release.Name }}.{{ .Values.ingress.ip }}.nip.io"
     http:
       paths:
       - backend:
