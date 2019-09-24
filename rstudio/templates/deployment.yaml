@@ -26,9 +26,9 @@ spec:
        value: "true"
      volumeMounts:
      - mountPath: /home/rstudio/kitematic
-       name: claim
+       name: {{ template "rstudio.fullname" . }}
    restartPolicy: Always
    volumes:
-   - name: claim
+   - name: {{ template "rstudio.fullname" . }}
      persistentVolumeClaim:
-      claimName: claim
+      claimName: {{ template "rstudio.fullname" . }}
