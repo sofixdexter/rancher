@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name:  {{ .Release.Name }}
+  namespace: gitlab
+spec:
+  rules:
+  - host: "{{ .Release.Name }}.{{ .Values.ingress.ip. }}.nip.io"
+    http:
+      paths:
+      - backend:
+          serviceName: {{ .Release.Name }}
+          servicePort: 80

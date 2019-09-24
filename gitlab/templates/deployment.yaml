@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: {{ .Release.Name }}
+ namespace: gitlab
+ labels:
+{{ include "gitlab.labels" . | indent 4 }}
+spec:
+ replicas: {{ .Values.replicaCount }}
+ selector:
+  matchLabels:
+   app.kubernetes.io/name: {{ include "gitlab.name" . }}
+   app.kubernetes.io/instance: {{ .Release.Name }}
+ template:
+  metadata:
+   labels:
+    app.kubernetes.io/name: {{ include "gitlab.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  spec:
+   containers:
+   - name: {{ .Chart.Name }}
+     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+     imagePullPolicy: {{ .Values.image.pullPolicy }}
+     volumeMounts:
+     - mountPath: /etc/gitlab
+       name: "{{ .Release.Name }}-config"
+     - mountPath: /var/log/gitlab
+       name: "{{ .Release.Name }}-logs"
+     - mountPath: /var/opt/gitlab
+       name: "{{ .Release.Name }}-data"
+   restartPolicy: Always
+   volumes:
+   - name: "{{ .Release.Name }}-config"
+     persistentVolumeClaim:
+      claimName: "{{ .Release.Name }}-config"
+   - name: "{{ .Release.Name }}-logs"
+     persistentVolumeClaim:
+      claimName: "{{ .Release.Name }}-logs"
+   - name: "{{ .Release.Name }}-data"
+     persistentVolumeClaim:
+      claimName: "{{ .Release.Name }}-data"
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      

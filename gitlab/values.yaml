@@ -1,0 +1,27 @@
+replicaCount: 1
+
+image:
+  repository: gitlab/gitlab-ce
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  ssh:
+    port: 22
+  http:
+    port: 80
+  https:
+    port: 443
+    
+ingress:
+  enabled: true
+  ip: 34.244.95.29
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size:
+    data: 10Gi
+    log: 
+    other:
