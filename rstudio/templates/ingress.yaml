@@ -1,13 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name:  {{ template "rstudio.fullname" . }}
+  name:  {{ .Release.Name }}
   namespace: rstudio
 spec:
   rules:
-  - host: rstudio.34.244.95.29.nip.io
+  - host: "{{ .Release.Name }}.{{ .Values.ingress.ip. }}.nip.io"
     http:
       paths:
       - backend:
-          serviceName: {{ include "rstudio.fullname" . }}
+          serviceName: {{ .Release.Name }}
           servicePort: 8787
