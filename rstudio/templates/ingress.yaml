@@ -5,7 +5,7 @@ metadata:
   namespace: rstudio
 spec:
   rules:
-  - host: {{ .Values.ingress.hosts.host }}
+  - host: rstudio.34.244.95.29.nip.io
     http:
       paths:
       - backend:
