@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: {{ include "rstudio.fullname" . }}
+ name: {{ .Release.Name }}
  namespace: rstudio
  labels:
 {{ include "rstudio.labels" . | indent 4 }}
@@ -26,9 +26,9 @@ spec:
        value: "true"
      volumeMounts:
      - mountPath: /home/rstudio/kitematic
-       name: {{ template "rstudio.fullname" . }}
+       name: {{ .Release.Name }}
    restartPolicy: Always
    volumes:
-   - name: {{ template "rstudio.fullname" . }}
+   - name: {{ .Release.Name }}
      persistentVolumeClaim:
-      claimName: {{ template "rstudio.fullname" . }}
+      claimName: {{ .Release.Name }}
