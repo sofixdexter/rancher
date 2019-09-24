@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: stable
+  repository: rocker/rstudio
+  tag: latest
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
