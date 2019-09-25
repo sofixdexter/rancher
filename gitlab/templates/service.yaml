@@ -9,7 +9,7 @@ spec:
   - name: ssh
     port: {{ .Values.service.ssh.port }}
     protocol: TCP
-    targetPort: {{ .Values.service.http.port }}
+    targetPort: {{ .Values.service.ssh.port }}
   - name: https
     port: {{ .Values.service.https.port }}
     protocol: TCP
