@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
  name: {{ .Release.Name }}
- namespace: rstudio
+ namespace: {{ .Release.Name }}
  labels:
 {{ include "rstudio.labels" . | indent 4 }}
 spec:
