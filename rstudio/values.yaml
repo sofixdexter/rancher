@@ -17,15 +17,8 @@ ingress:
   ip: 34.244.95.29
   enabled: true
   annotations: {}
-  hosts:
-    - host: rstudio.34.244.95.29.nip.io
-      paths: []
+  
 persistence:
   enabled: true
   accessMode: ReadWriteOnce
   size: 10Gi
-  
-resources: {}
-nodeSelector: {}
-tolerations: []
-affinity: {}
