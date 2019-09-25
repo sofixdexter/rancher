@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name:  {{ .Release.Name }}
-  namespace: gitlab
+  namespace: {{ .Release.Name }}
 spec:
   rules:
   - host: "{{ .Release.Name }}.{{ .Values.ingress.ip }}.nip.io"
