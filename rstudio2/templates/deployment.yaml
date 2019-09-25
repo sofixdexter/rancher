@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: {{ .Release.Name }}
+ namespace: rstudio
+ labels:
+{{ include "rstudio.labels" . | indent 4 }}
+spec:
+ replicas: {{ .Values.replicaCount }}
+ selector:
+  matchLabels:
+   app.kubernetes.io/name: {{ include "rstudio.name" . }}
+   app.kubernetes.io/instance: {{ .Release.Name }}
+ template:
+  metadata:
+   labels:
+    app.kubernetes.io/name: {{ include "rstudio.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  spec:
+   containers:
+   - name: {{ .Chart.Name }}
+     image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+     imagePullPolicy: {{ .Values.image.pullPolicy }}
+     env:
+     - name: DISABLE_AUTH
+       value: "true"
+     volumeMounts:
+     - mountPath: /home/rstudio/kitematic
+       name: {{ .Release.Name }}
+   restartPolicy: Always
+   volumes:
+   - name: {{ .Release.Name }}
+     persistentVolumeClaim:
+      claimName: {{ .Release.Name }}
