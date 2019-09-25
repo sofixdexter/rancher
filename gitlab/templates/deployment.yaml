@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
  name: {{ .Release.Name }}
- namespace: {{ .Release.Name }}
  labels:
 {{ include "gitlab.labels" . | indent 4 }}
 spec:
