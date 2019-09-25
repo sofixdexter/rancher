@@ -24,6 +24,8 @@ spec:
      env:
      - name: DISABLE_AUTH
        value: "true"
+     - name: ROOT
+       value: "true"       
      volumeMounts:
      - mountPath: /home/rstudio/kitematic
        name: {{ .Release.Name }}
